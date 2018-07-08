@@ -3,5 +3,9 @@
  */
 public class LevelPlayer
 {
+    public void runLevel(MovementResolver resolver, Level level)
+    {
+
+    }
 
 }

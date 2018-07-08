@@ -1,4 +1,4 @@
 public enum BoardState
 {
-    NoState, Bomb
+    NoState, Bomb, Speedup, Goal, Wall
 }
