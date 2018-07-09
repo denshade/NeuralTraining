@@ -1,10 +1,8 @@
 /**
  * Asks the AI what move to do and executes it.
  */
-public class MovementResolver {
-    public void runMove()
-    {
+public interface MovementResolver {
 
-    }
+    MovementDirection runMove(BoardState[][] context);
 
 }

@@ -1,7 +1,8 @@
 /**
  * Contains the neural network.
  */
-public class AI
+public interface AI
 {
+    MovementDirection predict(BoardState[][] context);
 
 }

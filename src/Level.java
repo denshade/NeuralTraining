@@ -1,8 +1,8 @@
-import java.util.List;
 
 public interface Level
 {
     void tick();
-    List<BoardState> getContext();
-
+    BoardState[][] getContext(int x,int y);
+    boolean isGoalReached(int x,int y);
+    boolean isInvalid(int x, int y);
 }
