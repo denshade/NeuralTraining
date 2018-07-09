@@ -13,7 +13,7 @@ class EncogAITrainerTest {
         EncogAITrainer trainer = new EncogAITrainer();
         BoardState[][] board = new BoardState[3][3];//
         board[0][0] = BoardState.NoState;
-        board[0][1] = BoardState.NoState;
+        board[0][1] = BoardState.Goal;
         board[0][2] = BoardState.NoState;
         board[1][0] = BoardState.NoState;
         board[1][1] = BoardState.NoState;//Center = player.
@@ -23,13 +23,14 @@ class EncogAITrainerTest {
         board[2][2] = BoardState.NoState;
 
         List<Example> examples = new ArrayList<>();
-        examples.add(new Example(board, MovementDirection.RIGHT, false));
-        examples.add(new Example(board, MovementDirection.LEFT, true));
-        examples.add(new Example(board, MovementDirection.UP, true));
-        examples.add(new Example(board, MovementDirection.DOWN, true));
+        examples.add(new Example(board, MovementDirection.RIGHT, 0));
+        examples.add(new Example(board, MovementDirection.LEFT, 1));
+        examples.add(new Example(board, MovementDirection.UP, 0.5));
+        examples.add(new Example(board, MovementDirection.DOWN, 0.5));
 
         AI ai = trainer.train(examples, Arrays.asList(new Integer[]{3}));
-        ai.predict(board);
+        MovementDirection direction = ai.predict(board);
+        assertEquals(direction, MovementDirection.LEFT);
     }
 
     @Test
@@ -41,7 +42,7 @@ class EncogAITrainerTest {
         board[1][0] = BoardState.Goal;
         board[1][1] = BoardState.Speedup;
         board[1][2] = BoardState.Wall;
-        double[] floats = EncogAITrainer.convertToDouble(board);
+        double[] floats = BoardContextToVector.convertToDouble(board);
         assertNotNull(floats);
     }
 }

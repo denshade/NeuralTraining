@@ -1,5 +1,8 @@
 import org.encog.neural.networks.BasicNetwork;
 
+import java.util.Arrays;
+import java.util.Collections;
+
 public class EncogAI implements AI
 {
     private final BasicNetwork right;
@@ -16,9 +19,19 @@ public class EncogAI implements AI
         this.bottom = bottom;
     }
 
-    public MovementDirection predict(BoardState context)
-    {
-        //todo
+    public MovementDirection predict(BoardState[][] context) throws Exception {
+        double[] leftResult = new double[1];
+        double[] bottomResult = new double[1];
+        double[] rightResult = new double[1];
+        double[] topResult = new double[1];
+        left.compute(BoardContextToVector.convertToDouble(context), leftResult);
+        right.compute(BoardContextToVector.convertToDouble(context), rightResult);
+        top.compute(BoardContextToVector.convertToDouble(context), topResult);
+        bottom.compute(BoardContextToVector.convertToDouble(context), bottomResult);
+        double bestResult = Collections.max(Arrays.asList(leftResult[0], rightResult[0], bottomResult[0], topResult[0]));
+        if (leftResult[0] == bestResult) return MovementDirection.LEFT;
+        if (rightResult[0] == bestResult) return MovementDirection.RIGHT;
+        if (topResult[0] == bestResult) return MovementDirection.UP;
         return MovementDirection.DOWN;
     }
 }

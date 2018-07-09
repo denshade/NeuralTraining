@@ -53,12 +53,7 @@ public class EncogAITrainer
             if (!example.getMoveDirection().equals(direction)) {
                 continue;
             }
-            double exampleIsPositiveAsDouble = 0.0;
-            if (example.isPositive()){
-                exampleIsPositiveAsDouble =1.0;
-            }
-
-            trainingset.add(new BasicMLData(convertToDouble(example.getBoardContext())), new BasicMLData(new double[]{exampleIsPositiveAsDouble}));
+            trainingset.add(new BasicMLData(BoardContextToVector.convertToDouble(example.getBoardContext())), new BasicMLData(new double[]{example.getScore()}));
         }
         return trainingset;
     }
@@ -76,26 +71,6 @@ public class EncogAITrainer
         return moveRightNetwork;
     }
 
-    public static double[] convertToDouble(BoardState[][] board) throws Exception {
-        double[] doublesFlat = new double[board.length*board[0].length];
-        for (int x = 0; x < board.length; x++)
-        {
-            for (int y = 0; y < board[x].length; y++)
-            {
-                double res = 0;
-                switch (board[x][y])
-                {
-                    case Bomb: res = -1; break;
-                    case NoState: res = 0; break;
-                    case Wall: res = -1; break;
-                    case Speedup: res = 0.5; break;
-                    case Goal: res = 1; break;
-                    default: throw new Exception("Unknow board state");
-                }
-                doublesFlat[x * board[x].length + y] = res;
-            }
-        }
-        return doublesFlat;
-    }
+
 
 }
