@@ -28,6 +28,7 @@ public class EncogAI implements AI
         right.compute(BoardContextToVector.convertToDouble(context), rightResult);
         top.compute(BoardContextToVector.convertToDouble(context), topResult);
         bottom.compute(BoardContextToVector.convertToDouble(context), bottomResult);
+        System.out.println("<- " + leftResult[0] + " -> " + rightResult[0] + " V"  + bottomResult[0] + " ^" + topResult[0]);
         double bestResult = Collections.max(Arrays.asList(leftResult[0], rightResult[0], bottomResult[0], topResult[0]));
         if (leftResult[0] == bestResult) return MovementDirection.LEFT;
         if (rightResult[0] == bestResult) return MovementDirection.RIGHT;

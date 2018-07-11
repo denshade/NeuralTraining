@@ -27,6 +27,67 @@ class EncogAITrainerTest {
     }
 
     @Test
+    void trainBombsAround() throws Exception {
+        EncogAITrainer trainer = new EncogAITrainer();
+        List<Example> examples = addExamples(0,1, MovementDirection.UP);
+        examples.addAll(addExamples(1,0, MovementDirection.RIGHT));
+        examples.addAll(addExamples(0,-1, MovementDirection.DOWN));
+        examples.addAll(addExamples(-1,0, MovementDirection.LEFT));
+        BoardContext downSafe = new BoardContext(3);
+        downSafe.markState(0,1, BoardState.Bomb);
+        downSafe.markState(1,0, BoardState.Bomb);
+        downSafe.markState(-1,0, BoardState.Bomb);
+        AI ai = trainer.train(examples, Arrays.asList(new Integer[]{4}));
+        MovementDirection direction = ai.predict(downSafe);
+        assertEquals(MovementDirection.UP, direction);
+    }
+
+    @Test
+    void trainCertitudeBombsAround() throws Exception {
+        EncogAITrainer trainer = new EncogAITrainer();
+        List<Example> examples = addExamples(0,1, MovementDirection.UP);
+        examples.addAll(addExamples(1,0, MovementDirection.RIGHT));
+        examples.addAll(addExamples(0,-1, MovementDirection.DOWN));
+        examples.addAll(addExamples(-1,0, MovementDirection.LEFT));
+        BoardContext upSafe = new BoardContext(3);
+        upSafe.markState(0,1, BoardState.Bomb);
+        upSafe.markState(1,0, BoardState.Bomb);
+        upSafe.markState(-1,0, BoardState.Bomb);
+        examples.add(new Example(upSafe, MovementDirection.UP, 1));
+        examples.add(new Example(upSafe, MovementDirection.DOWN, 0));
+        examples.add(new Example(upSafe, MovementDirection.LEFT, 0));
+        examples.add(new Example(upSafe, MovementDirection.RIGHT, 0));
+
+        BoardContext downSafe = new BoardContext(3);
+        downSafe.markState(0,-1, BoardState.Bomb);
+        downSafe.markState(1,0, BoardState.Bomb);
+        downSafe.markState(-1,0, BoardState.Bomb);
+        examples.add(new Example(downSafe, MovementDirection.UP, 0));
+        examples.add(new Example(downSafe, MovementDirection.DOWN, 1));
+        examples.add(new Example(downSafe, MovementDirection.LEFT, 0));
+        examples.add(new Example(downSafe, MovementDirection.RIGHT, 0));
+
+        AI ai = trainer.train(examples, Arrays.asList(new Integer[]{4,3}));
+        MovementDirection direction = ai.predict(upSafe);
+        assertEquals(MovementDirection.UP, direction);
+    }
+
+    private List<Example> addExamples(int x, int y, MovementDirection direction) throws Exception {
+        BoardContext c1 = new BoardContext(3);
+        c1.markState(x, y, BoardState.Bomb);
+        List<Example> examples = new ArrayList<>();
+        for (MovementDirection curDirection : MovementDirection.values())
+        {
+            double score = 0.5;
+            if (direction.equals(curDirection)) {
+                score = 0;
+            }
+            examples.add(new Example(c1, direction, score));
+        }
+        return examples;
+    }
+
+    @Test
     void convertToDouble() throws Exception {
         BoardState[][] board = new BoardState[2][3];
         board[0][0] = BoardState.Bomb;
