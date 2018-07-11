@@ -19,7 +19,7 @@ public class EncogAI implements AI
         this.bottom = bottom;
     }
 
-    public MovementDirection predict(BoardState[][] context) throws Exception {
+    public MovementDirection predict(BoardContext context) throws Exception {
         double[] leftResult = new double[1];
         double[] bottomResult = new double[1];
         double[] rightResult = new double[1];

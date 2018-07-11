@@ -10,7 +10,6 @@ public class LevelPlayer
         int tick = 0;
         while(tick < MAXTICK)
         {
-
             MovementDirection option = resolver.runMove(level.getContext(x,y));
             switch(option)
             {
@@ -32,7 +31,6 @@ public class LevelPlayer
             tick++;
         }
         return LevelOutcome.TIMEOUT;
-
     }
 
 }

@@ -3,6 +3,6 @@
  */
 public interface AI
 {
-    MovementDirection predict(BoardState[][] context) throws Exception;
+    MovementDirection predict(BoardContext context) throws Exception;
 
 }

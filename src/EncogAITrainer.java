@@ -15,7 +15,7 @@ public class EncogAITrainer
     {
         if (examples.size() < 1) throw new IllegalArgumentException("At least one example should be provided");
         if (nrOfNodesPerLayer.size() < 1) throw new IllegalArgumentException("At least one layer should be provided");
-        int size = examples.get(0).getBoardContext()[0].length * examples.get(0).getBoardContext().length;
+        int size = examples.get(0).getBoardContext().getStates()[0].length * examples.get(0).getBoardContext().getStates().length;
 
         BasicNetwork moveRightNetwork = getBasicNetwork(nrOfNodesPerLayer, size);
         BasicNetwork moveLeftNetwork = getBasicNetwork(nrOfNodesPerLayer, size);

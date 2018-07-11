@@ -1,6 +1,7 @@
 public class BoardContextToVector
 {
-    public static double[] convertToDouble(BoardState[][] board) throws Exception {
+    public static double[] convertToDouble(BoardContext context) throws Exception {
+        BoardState[][] board = context.getStates();
         double[] doublesFlat = new double[board.length*board[0].length];
         for (int x = 0; x < board.length; x++)
         {

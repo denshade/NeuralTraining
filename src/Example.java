@@ -3,7 +3,7 @@
  */
 public class Example
 {
-    public Example(BoardState[][] board, MovementDirection option, double score) throws Exception {
+    public Example(BoardContext board, MovementDirection option, double score) throws Exception {
         this.board = board;
         this.moveDirection = option;
         this.score = score;
@@ -12,13 +12,11 @@ public class Example
 
     }
 
-    private BoardState[][] board;//Context of the map. Center is the current location. The rest is items.
+    private BoardContext board;//Context of the map. Center is the current location. The rest is items.
     private MovementDirection moveDirection;
     private double score; //Is it a good idea to move in the moveDirection? 0 is no, +1 is a supergood idea.
 
-
-
-    public BoardState[][] getBoardContext() {
+    public BoardContext getBoardContext() {
         return board;
     }
 
