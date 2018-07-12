@@ -1,8 +1,7 @@
+import org.encog.ca.program.basic.Movement;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -58,50 +57,63 @@ class EncogAITrainerTest {
         examples.add(new Example(upSafe, MovementDirection.LEFT, 0));
         examples.add(new Example(upSafe, MovementDirection.RIGHT, 0));
 
-        BoardContext downSafe = new BoardContext(3);
-        downSafe.markState(0,-1, BoardState.Bomb);
-        downSafe.markState(1,0, BoardState.Bomb);
-        downSafe.markState(-1,0, BoardState.Bomb);
-        examples.add(new Example(downSafe, MovementDirection.UP, 0));
-        examples.add(new Example(downSafe, MovementDirection.DOWN, 1));
-        examples.add(new Example(downSafe, MovementDirection.LEFT, 0));
-        examples.add(new Example(downSafe, MovementDirection.RIGHT, 0));
+        addBombs(examples);
 
-        BoardContext goalSafe = new BoardContext(3);
-        goalSafe.markState(-1,0, BoardState.Goal);
-        examples.add(new Example(goalSafe, MovementDirection.LEFT, 1));
-        examples.add(new Example(goalSafe, MovementDirection.DOWN, 0.5));
-        examples.add(new Example(goalSafe, MovementDirection.RIGHT, 0.5));
-        examples.add(new Example(goalSafe, MovementDirection.UP, 0.5));
-
-        BoardContext goalTop = BoardContext.rotate(goalSafe);
-        examples.add(new Example(goalTop, MovementDirection.UP, 1));
-        examples.add(new Example(goalTop, MovementDirection.DOWN, 0.5));
-        examples.add(new Example(goalTop, MovementDirection.RIGHT, 0.5));
-        examples.add(new Example(goalTop, MovementDirection.LEFT, 0.5));
-
-        BoardContext goalRight = BoardContext.rotate(goalTop);
-        examples.add(new Example(goalRight, MovementDirection.UP, 0.5));
-        examples.add(new Example(goalRight, MovementDirection.DOWN, 0.5));
-        examples.add(new Example(goalRight, MovementDirection.RIGHT, 1));
-        examples.add(new Example(goalRight, MovementDirection.LEFT, 0.5));
-
-        BoardContext goalDown = BoardContext.rotate(goalRight);
-        examples.add(new Example(goalDown, MovementDirection.UP, 0.5));
-        examples.add(new Example(goalDown, MovementDirection.DOWN, 1));
-        examples.add(new Example(goalDown, MovementDirection.RIGHT, 0.5));
-        examples.add(new Example(goalDown, MovementDirection.LEFT, 0.5));
+        BoardContext goalSafe = BoardContextLoader.loadFromString("N,N,N;G,N,N;N,N,N",3);
+        Map<MovementDirection, Double> movements = new HashMap<>();
+        movements.put( MovementDirection.UP, 0.5);
+        movements.put( MovementDirection.LEFT, 1.0);movements.put( MovementDirection.RIGHT, 0.5);
+        movements.put( MovementDirection.DOWN, 0.5);
+        examples.addAll(createExamples(movements, goalSafe));
 
 
-        BoardContext testSafe = new BoardContext(3);
-        testSafe.markState(0,-1, BoardState.Bomb);
-        testSafe.markState(1,0, BoardState.Bomb);
-        testSafe.markState(-1,0, BoardState.Bomb);
-        testSafe.markState(0,1, BoardState.Goal);
+        BoardContext goalTop = BoardContextLoader.loadFromString("N,G,N;N,N,N;N,N,N",3);
+        movements.clear();
+        movements.put( MovementDirection.UP, 1.0);
+        movements.put( MovementDirection.LEFT, 0.5);movements.put( MovementDirection.RIGHT, 0.5);
+        movements.put( MovementDirection.DOWN, 0.5);
+        examples.addAll(createExamples(movements, goalTop));
 
-        AI ai = trainer.train(examples, Arrays.asList(new Integer[]{4,3,3}));
+        BoardContext goalRight = BoardContextLoader.loadFromString("N,N,N;N,N,G;N,N,N",3);
+        movements.clear();
+        movements.put( MovementDirection.UP, 0.5);
+        movements.put( MovementDirection.LEFT, 0.5);movements.put( MovementDirection.RIGHT, 1.0);
+        movements.put( MovementDirection.DOWN, 0.5);
+        examples.addAll(createExamples(movements, goalRight));
+
+        BoardContext goalDown = BoardContextLoader.loadFromString("N,N,N;N,N,N;N,G,N",3);
+        movements.clear();
+        movements.put( MovementDirection.UP, 0.5);
+        movements.put( MovementDirection.LEFT, 0.5);movements.put( MovementDirection.RIGHT, 0.5);
+        movements.put( MovementDirection.DOWN, 1.0);
+        examples.addAll(createExamples(movements, goalDown));
+
+
+        BoardContext testSafe = BoardContextLoader.loadFromString("N,B,N;N,N,B;N,G,N",3);
+
+
+        AI ai = trainer.train(examples, Arrays.asList(new Integer[]{4,5,5}));
         MovementDirection direction = ai.predict(testSafe);
         assertEquals(MovementDirection.DOWN, direction);
+    }
+
+    private void addBombs(List<Example> examples) throws Exception {
+        BoardContext downSafe = BoardContextLoader.loadFromString("N,B,N;B,N,B;N,N,N",3);
+        Map<MovementDirection, Double> movements = new HashMap<>();
+        movements.put( MovementDirection.UP, 0.0);
+        movements.put( MovementDirection.LEFT, 0.0);
+        movements.put( MovementDirection.RIGHT, 0.0);
+        movements.put( MovementDirection.DOWN, 1.0);
+        examples.addAll(createExamples(movements, downSafe));
+    }
+
+    private List<Example> createExamples(Map<MovementDirection, Double> movements, BoardContext boardContext) throws Exception {
+        List<Example> examples = new ArrayList<>();
+        for (MovementDirection movement : movements.keySet())
+        {
+            examples.add(new Example(boardContext, movement, movements.get(movement)));
+        }
+        return examples;
     }
 
 
