@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="bddc20dc-ffe0-4e7d-9681-b744751738ab" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/BoardContext.java" afterPath="$PROJECT_DIR$/src/BoardContext.java" />
-      <change beforePath="$PROJECT_DIR$/tests/BoardContextTest.java" afterPath="$PROJECT_DIR$/tests/BoardContextTest.java" />
       <change beforePath="$PROJECT_DIR$/tests/EncogAITrainerTest.java" afterPath="$PROJECT_DIR$/tests/EncogAITrainerTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -49,8 +47,8 @@
       <file leaf-file-name="EncogAITrainerTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tests/EncogAITrainerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="72" column="37" lean-forward="false" selection-start-line="72" selection-start-column="37" selection-end-line="72" selection-end-column="37" />
+            <state relative-caret-position="399">
+              <caret line="99" column="49" lean-forward="true" selection-start-line="99" selection-start-column="49" selection-end-line="99" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -173,9 +171,9 @@
         <option value="$PROJECT_DIR$/src/EncogAITrainer.java" />
         <option value="$PROJECT_DIR$/src/LevelPlayer.java" />
         <option value="$PROJECT_DIR$/src/EncogAI.java" />
-        <option value="$PROJECT_DIR$/tests/EncogAITrainerTest.java" />
         <option value="$PROJECT_DIR$/src/BoardContext.java" />
         <option value="$PROJECT_DIR$/tests/BoardContextTest.java" />
+        <option value="$PROJECT_DIR$/tests/EncogAITrainerTest.java" />
       </list>
     </option>
   </component>
@@ -503,38 +501,45 @@
       <option name="project" value="LOCAL" />
       <updated>1531314170238</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Add rotate functionality.">
+      <created>1531408509789</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1531408509789</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="BoardContextTest_testRotate - 2018.07.12 at 16h 43m 50s.xml">
-      <configuration name="BoardContextTest.testRotate" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="BoardContextTest_testRotate - 2018.07.12 at 16h 45m 00s.xml">
-      <configuration name="BoardContextTest.testRotate" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="BoardContextTest_testRotate - 2018.07.12 at 17h 02m 35s.xml">
-      <configuration name="BoardContextTest.testRotate" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="BoardContextTest_testRotate - 2018.07.12 at 17h 03m 08s.xml">
-      <configuration name="BoardContextTest.testRotate" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="BoardContextTest_testRotate - 2018.07.12 at 17h 03m 22s.xml">
-      <configuration name="BoardContextTest.testRotate" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="BoardContextTest_testRotate - 2018.07.12 at 17h 03m 47s.xml">
-      <configuration name="BoardContextTest.testRotate" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="EncogAITrainerTest_trainCertitudeBombsAround - 2018.07.11 at 19h 44m 52s.xml">
+    <history-entry file="EncogAITrainerTest_trainCertitudeBombsAround - 2018.07.12 at 17h 24m 15s.xml">
       <configuration name="EncogAITrainerTest.trainCertitudeBombsAround" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="EncogAITrainerTest_trainCertitudeBombsAround - 2018.07.11 at 19h 45m 00s.xml">
+    <history-entry file="EncogAITrainerTest_trainCertitudeBombsAround - 2018.07.12 at 17h 26m 00s.xml">
       <configuration name="EncogAITrainerTest.trainCertitudeBombsAround" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="EncogAITrainerTest_trainCertitudeBombsAround - 2018.07.11 at 19h 45m 28s.xml">
+    <history-entry file="EncogAITrainerTest_trainCertitudeBombsAround - 2018.07.12 at 17h 26m 56s.xml">
       <configuration name="EncogAITrainerTest.trainCertitudeBombsAround" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="EncogAITrainerTest_trainCertitudeBombsAround - 2018.07.12 at 17h 06m 41s.xml">
+    <history-entry file="EncogAITrainerTest_trainCertitudeBombsAround - 2018.07.12 at 17h 27m 06s.xml">
+      <configuration name="EncogAITrainerTest.trainCertitudeBombsAround" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="EncogAITrainerTest_trainCertitudeBombsAround - 2018.07.12 at 17h 27m 28s.xml">
+      <configuration name="EncogAITrainerTest.trainCertitudeBombsAround" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="EncogAITrainerTest_trainCertitudeBombsAround - 2018.07.12 at 17h 28m 03s.xml">
+      <configuration name="EncogAITrainerTest.trainCertitudeBombsAround" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="EncogAITrainerTest_trainCertitudeBombsAround - 2018.07.12 at 17h 29m 53s.xml">
+      <configuration name="EncogAITrainerTest.trainCertitudeBombsAround" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="EncogAITrainerTest_trainCertitudeBombsAround - 2018.07.12 at 17h 29m 58s.xml">
+      <configuration name="EncogAITrainerTest.trainCertitudeBombsAround" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="EncogAITrainerTest_trainCertitudeBombsAround - 2018.07.12 at 17h 30m 10s.xml">
+      <configuration name="EncogAITrainerTest.trainCertitudeBombsAround" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="EncogAITrainerTest_trainCertitudeBombsAround - 2018.07.12 at 17h 30m 16s.xml">
       <configuration name="EncogAITrainerTest.trainCertitudeBombsAround" configurationId="JUnit" />
     </history-entry>
   </component>
@@ -579,7 +584,8 @@
     <MESSAGE value="First examples to learning." />
     <MESSAGE value="More examples." />
     <MESSAGE value="Needs more layers." />
-    <option name="LAST_COMMIT_MESSAGE" value="Needs more layers." />
+    <MESSAGE value="Add rotate functionality." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add rotate functionality." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -591,7 +597,7 @@
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="3" />
+      <option name="time" value="5" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1016,8 +1022,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/EncogAITrainerTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="72" column="37" lean-forward="false" selection-start-line="72" selection-start-column="37" selection-end-line="72" selection-end-column="37" />
+        <state relative-caret-position="399">
+          <caret line="99" column="49" lean-forward="true" selection-start-line="99" selection-start-column="49" selection-end-line="99" selection-end-column="49" />
           <folding />
         </state>
       </provider>

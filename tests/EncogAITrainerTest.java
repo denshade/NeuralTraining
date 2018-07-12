@@ -67,6 +67,31 @@ class EncogAITrainerTest {
         examples.add(new Example(downSafe, MovementDirection.LEFT, 0));
         examples.add(new Example(downSafe, MovementDirection.RIGHT, 0));
 
+        BoardContext goalSafe = new BoardContext(3);
+        goalSafe.markState(-1,0, BoardState.Goal);
+        examples.add(new Example(goalSafe, MovementDirection.LEFT, 1));
+        examples.add(new Example(goalSafe, MovementDirection.DOWN, 0.5));
+        examples.add(new Example(goalSafe, MovementDirection.RIGHT, 0.5));
+        examples.add(new Example(goalSafe, MovementDirection.UP, 0.5));
+
+        BoardContext goalTop = BoardContext.rotate(goalSafe);
+        examples.add(new Example(goalTop, MovementDirection.UP, 1));
+        examples.add(new Example(goalTop, MovementDirection.DOWN, 0.5));
+        examples.add(new Example(goalTop, MovementDirection.RIGHT, 0.5));
+        examples.add(new Example(goalTop, MovementDirection.LEFT, 0.5));
+
+        BoardContext goalRight = BoardContext.rotate(goalTop);
+        examples.add(new Example(goalRight, MovementDirection.UP, 0.5));
+        examples.add(new Example(goalRight, MovementDirection.DOWN, 0.5));
+        examples.add(new Example(goalRight, MovementDirection.RIGHT, 1));
+        examples.add(new Example(goalRight, MovementDirection.LEFT, 0.5));
+
+        BoardContext goalDown = BoardContext.rotate(goalRight);
+        examples.add(new Example(goalDown, MovementDirection.UP, 0.5));
+        examples.add(new Example(goalDown, MovementDirection.DOWN, 1));
+        examples.add(new Example(goalDown, MovementDirection.RIGHT, 0.5));
+        examples.add(new Example(goalDown, MovementDirection.LEFT, 0.5));
+
 
         BoardContext testSafe = new BoardContext(3);
         testSafe.markState(0,-1, BoardState.Bomb);
@@ -74,10 +99,11 @@ class EncogAITrainerTest {
         testSafe.markState(-1,0, BoardState.Bomb);
         testSafe.markState(0,1, BoardState.Goal);
 
-        AI ai = trainer.train(examples, Arrays.asList(new Integer[]{4,3}));
-        MovementDirection direction = ai.predict(downSafe);
-        assertEquals(MovementDirection.UP, direction);
+        AI ai = trainer.train(examples, Arrays.asList(new Integer[]{4,3,3}));
+        MovementDirection direction = ai.predict(testSafe);
+        assertEquals(MovementDirection.DOWN, direction);
     }
+
 
     private List<Example> addExamples(int x, int y, MovementDirection direction) throws Exception {
         BoardContext c1 = new BoardContext(3);
