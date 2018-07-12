@@ -67,8 +67,15 @@ class EncogAITrainerTest {
         examples.add(new Example(downSafe, MovementDirection.LEFT, 0));
         examples.add(new Example(downSafe, MovementDirection.RIGHT, 0));
 
+
+        BoardContext testSafe = new BoardContext(3);
+        testSafe.markState(0,-1, BoardState.Bomb);
+        testSafe.markState(1,0, BoardState.Bomb);
+        testSafe.markState(-1,0, BoardState.Bomb);
+        testSafe.markState(0,1, BoardState.Goal);
+
         AI ai = trainer.train(examples, Arrays.asList(new Integer[]{4,3}));
-        MovementDirection direction = ai.predict(upSafe);
+        MovementDirection direction = ai.predict(downSafe);
         assertEquals(MovementDirection.UP, direction);
     }
 
