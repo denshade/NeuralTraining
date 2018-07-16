@@ -33,4 +33,14 @@ public class FirstLevel implements Level
     public boolean isInvalid(int x, int y) {
         return x < 0 || x > 2 || y < 0 || y > 2;
     }
+
+    @Override
+    public int getStartX() {
+        return 1;
+    }
+
+    @Override
+    public int getStartY() {
+        return 1;
+    }
 }

@@ -3,6 +3,6 @@
  */
 public interface MovementResolver {
 
-    MovementDirection runMove(BoardState[][] context);
+    MovementDirection runMove(BoardContext context) throws Exception;
 
 }

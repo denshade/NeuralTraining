@@ -8,4 +8,7 @@ public interface Level
     boolean isGameOver(int x, int y);
 
     boolean isInvalid(int x, int y);
+    int getStartX();
+    int getStartY();
+
 }

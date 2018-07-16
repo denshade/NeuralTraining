@@ -21,6 +21,6 @@ class CLITrainMyAITest {
     }
     @Test
     void runTrainer() throws Exception {
-        CLITrainMyAI.main(new String[] {"testfiles\\examples.csv", "tom.ai", "4,3,3"});
+        CLITrainMyAI.main(new String[] {"testfiles\\examples.csv", "tom.ai", "4,4,4"});
     }
 }
