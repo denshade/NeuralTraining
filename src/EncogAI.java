@@ -1,14 +1,15 @@
 import org.encog.neural.networks.BasicNetwork;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Collections;
 
-public class EncogAI implements AI
+public class EncogAI implements AI, Serializable
 {
-    private final BasicNetwork right;
-    private final BasicNetwork top;
-    private final BasicNetwork bottom;
-    private final BasicNetwork left;
+    public final BasicNetwork right;
+    public final BasicNetwork top;
+    public final BasicNetwork bottom;
+    public final BasicNetwork left;
 
     public EncogAI(BasicNetwork left, BasicNetwork right, BasicNetwork top, BasicNetwork bottom)
     {

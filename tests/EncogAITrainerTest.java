@@ -66,6 +66,13 @@ class EncogAITrainerTest {
         movements.put( MovementDirection.DOWN, 0.5);
         examples.addAll(createExamples(movements, goalSafe));
 
+        BoardContext goalSafeBombs = BoardContextLoader.loadFromString("B,B,B;G,B,B;B,B,B",3);
+        movements.clear();
+        movements.put( MovementDirection.UP, 0.0);
+        movements.put( MovementDirection.LEFT, 1.0);movements.put( MovementDirection.RIGHT, 0.0);
+        movements.put( MovementDirection.DOWN, 0.0);
+        examples.addAll(createExamples(movements, goalSafeBombs));
+
 
         BoardContext goalTop = BoardContextLoader.loadFromString("N,G,N;N,N,N;N,N,N",3);
         movements.clear();
@@ -74,12 +81,27 @@ class EncogAITrainerTest {
         movements.put( MovementDirection.DOWN, 0.5);
         examples.addAll(createExamples(movements, goalTop));
 
+        BoardContext goalTopBombs = BoardContextLoader.loadFromString("B,G,B;B,B,B;B,B,B",3);
+        movements.clear();
+        movements.put( MovementDirection.UP, 1.0);
+        movements.put( MovementDirection.LEFT, 0.0);movements.put( MovementDirection.RIGHT, 0.0);
+        movements.put( MovementDirection.DOWN, 0.0);
+        examples.addAll(createExamples(movements, goalTopBombs));
+
         BoardContext goalRight = BoardContextLoader.loadFromString("N,N,N;N,N,G;N,N,N",3);
         movements.clear();
         movements.put( MovementDirection.UP, 0.5);
         movements.put( MovementDirection.LEFT, 0.5);movements.put( MovementDirection.RIGHT, 1.0);
         movements.put( MovementDirection.DOWN, 0.5);
         examples.addAll(createExamples(movements, goalRight));
+
+        BoardContext goalRightBombs = BoardContextLoader.loadFromString("B,B,B;B,B,G;B,B,B",3);
+        movements.clear();
+        movements.put( MovementDirection.UP, 0.0);
+        movements.put( MovementDirection.LEFT, 0.0);movements.put( MovementDirection.RIGHT, 1.0);
+        movements.put( MovementDirection.DOWN, 0.0);
+        examples.addAll(createExamples(movements, goalRightBombs));
+
 
         BoardContext goalDown = BoardContextLoader.loadFromString("N,N,N;N,N,N;N,G,N",3);
         movements.clear();
@@ -88,11 +110,18 @@ class EncogAITrainerTest {
         movements.put( MovementDirection.DOWN, 1.0);
         examples.addAll(createExamples(movements, goalDown));
 
+        BoardContext goalDownBombs = BoardContextLoader.loadFromString("B,B,B;B,B,B;B,G,B",3);
+        movements.clear();
+        movements.put( MovementDirection.UP, 0.0);
+        movements.put( MovementDirection.LEFT, 0.0);movements.put( MovementDirection.RIGHT, 0.0);
+        movements.put( MovementDirection.DOWN, 1.0);
+        examples.addAll(createExamples(movements, goalDownBombs));
+
 
         BoardContext testSafe = BoardContextLoader.loadFromString("N,B,N;N,N,B;N,G,N",3);
 
 
-        AI ai = trainer.train(examples, Arrays.asList(new Integer[]{4,5,5}));
+        AI ai = trainer.train(examples, Arrays.asList(new Integer[]{9}));
         MovementDirection direction = ai.predict(testSafe);
         assertEquals(MovementDirection.DOWN, direction);
     }
