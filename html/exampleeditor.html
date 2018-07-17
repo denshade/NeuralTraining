@@ -1,0 +1,81 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<body style="background:url('brain.png');background-repeat: no-repeat;background-size: auto;">
+<div class="container">
+    <div class="card">
+<table class="table">
+    <tr>
+        <td><select class="form-control" id="t00" ><option value="N">Nothing</option><option value="B">Bomb</option><option value="G">Goal</option><option value="W">Wall</option></select></td>
+        <td><select class="form-control" id="t01" ><option value="N">Nothing</option><option value="B">Bomb</option><option value="G">Goal</option><option value="W">Wall</option></select></td>
+        <td><select class="form-control" id="t02"><option value="N">Nothing</option><option value="B">Bomb</option><option value="G">Goal</option><option value="W">Wall</option></select></td>
+    </tr>
+    <tr>
+        <td><select class="form-control" id="t10"><option value="N">Nothing</option><option value="B">Bomb</option><option value="G">Goal</option><option value="W">Wall</option></select></td>
+        <td><select class="form-control" id="t11"><option value="N">Nothing</option><option value="B">Bomb</option><option value="G">Goal</option><option value="W">Wall</option></select></td>
+        <td><select class="form-control" id="t12"><option value="N">Nothing</option><option value="B">Bomb</option><option value="G">Goal</option><option value="W">Wall</option></select></td>
+    </tr>
+    <tr>
+        <td><select class="form-control" id="t20"><option value="N">Nothing</option><option value="B">Bomb</option><option value="G">Goal</option><option value="W">Wall</option></select></td>
+        <td><select class="form-control" id="t21"><option value="N">Nothing</option><option value="B">Bomb</option><option value="G">Goal</option><option value="W">Wall</option></select></td>
+        <td><select class="form-control" id="t22"><option value="N">Nothing</option><option value="B">Bomb</option><option value="G">Goal</option><option value="W">Wall</option></select></td>
+    </tr>
+</table>
+<br/>
+<!--table class="table">
+    <tr>
+        <td></td>
+        <td><input class="form-control" id="up" type="number"></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><input class="form-control" id="left" type="number"></td><td></td><td><input id="right" type="number"></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td><input class="form-control" id="down" type="number"></td>
+        <td></td>
+    </tr>
+</table-->
+    <table class="table">
+        <tr>
+            <td></td>
+            <td><select id="up"><option value="1.0">Good</option><option value="0.5">Medium</option><option value="0.0">Bad</option></select></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><select id="left"><option value="1.0">Good</option><option value="0.5">Medium</option><option value="0.0">Bad</option></select></td><td></td><td><select id="right"><option value="1.0">Good</option><option value="0.5">Medium</option><option value="0.0">Bad</option></select></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><select id="down"><option value="1.0">Good</option><option value="0.5">Medium</option><option value="0.0">Bad</option></select></td>
+            <td></td>
+        </tr>
+    </table>
+
+<button class="btn btn-primary" onclick="fillArea()">Calculate</button> <br/>
+
+<textarea class="form-control"  id="lines"></textarea>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<script>
+    function fillArea()
+    {
+        var context = $('#t00').val() + ',' + $('#t01').val()+','+ $('#t02').val() + ';';
+        context +=  $('#t10').val() + ',' + $('#t11').val()+','+ $('#t12').val() + ';';
+        context +=  $('#t20').val() + ',' + $('#t21').val()+','+ $('#t22').val();
+        $('#lines').val($('#lines').val() + context+"\n");
+        var weights = $('#left').val() + ',' + $('#right').val()+','+ $('#up').val() + ','+ $('#down').val();
+        $('#lines').val($('#lines').val() + weights+"\n");
+
+    }
+</script>
+
+</body>
+</html>

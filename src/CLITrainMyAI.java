@@ -25,7 +25,6 @@ public class CLITrainMyAI
             List<Example> examples = getExamplesFromFile(new FileReader(new File(args[0])));
 
             EncogAITrainer trainer = new EncogAITrainer();
-            List<Integer> nrOfNodesPerLayer = new ArrayList<>();
             List<Integer> ints = Arrays.stream(nrOfLayers.split(",")).map(s -> Integer.parseInt(s)).collect(Collectors.toList());
             AI ai = trainer.train(examples, ints);
             AIDao dao = new AIDao();
